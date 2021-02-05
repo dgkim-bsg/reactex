@@ -1,1 +1,1 @@
-리액트 학습을 위한 프로젝트 초기 빌드
+BSG VOICE_SI React Example Project
