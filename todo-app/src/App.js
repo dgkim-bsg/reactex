@@ -1,8 +1,15 @@
 import React from "react";
 import TodoTemplate from "./components/TodoTemplate";
+import TodoInsert from "./components/TodoInsert";
+import TodoList from "./components/TodoList";
 
 const App = () => {
-    return <TodoTemplate>Todo App 만들기</TodoTemplate>;
+    return (
+        <TodoTemplate>
+            <TodoInsert />
+            <TodoList />
+        </TodoTemplate>
+    );
 };
 
 export default App;
