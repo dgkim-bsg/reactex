@@ -1,2 +1,3 @@
 newsapi.org API key
-340b36a266894cc2b2ce4015f676e0c4
+
+http://newsapi.org/v2/top-headlines?country=kr&apiKey=340b36a266894cc2b2ce4015f676e0c4
