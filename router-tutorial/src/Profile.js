@@ -1,4 +1,6 @@
 import React from "react";
+import { Link, Route } from "react-router-dom";
+import WithRouterSample from "./WithRouterSample";
 
 const data = {
     velopert: {
@@ -11,7 +13,7 @@ const data = {
     },
 };
 
-const Profile = ({ match, aaa }) => {
+const Profile = ({ match }) => {
     const { username } = match.params;
     const profile = data[username];
     if (!profile) {
@@ -23,6 +25,7 @@ const Profile = ({ match, aaa }) => {
                 {username} ({profile.name})
             </h3>
             <p>{profile.description}</p>
+            <WithRouterSample />
         </div>
     );
 };
