@@ -17,31 +17,24 @@ const NewsListBlock = styled.div`
     }
 `;
 
-const NewsList = () => {
-    const [articles, setArticles] = useState(null);
-    const [loading, setLoading] = useState(false);
+const NewsList = ({category}) => {
+    const [loading, response, error] = usePromise(() => {
+        const query = category === 'all' ? '' : `&category=${category}`;
+        return axios.get(
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=340b36a266894cc2b2ce4015f676e0c4`,
+        );
+      }, [category]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try{
-                const response = await axios.get("http://localhost:3000/top-headlines.json");
-                console.log(response.data.articles);
-                console.log(articles);
-                setArticles(response.data.articles);
-            } catch(e){
-                console.log(e);
-            }
-            setLoading(false);
-        };
-        fetchData();
-    }, []);
     if(loading){
         return <NewsListBlock>대기중...</NewsListBlock>
     }
-    if(!articles){
+    if(!response){  // response 값이 설정되지 않았을 때
         return null;
     }
+    if(error){
+        return <NewsListBlock>에러 발생...</NewsListBlock>
+    }
+    const {articles} = response.data;
     return (
         <NewsListBlock>
             {articles.map(article => (
