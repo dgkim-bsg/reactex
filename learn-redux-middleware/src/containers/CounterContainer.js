@@ -4,7 +4,6 @@ import { increase, decrease } from "../modules/counter";
 import Counter from "../components/Counter";
 
 const CounterContainer = ({ number, increase, decrease }) => {
-    console.log("number : " + number);
     return (
         <Counter number={number} onIncrease={increase} onDecrease={decrease} />
     );
