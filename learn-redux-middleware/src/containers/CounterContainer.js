@@ -13,7 +13,7 @@ export default connect(
     state => ({
         number: state.counter
     }),
-    {
+    {   // 디스패치
         increase,
         decrease
     }
