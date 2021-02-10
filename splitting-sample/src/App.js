@@ -12,7 +12,7 @@ const App = () => {
         setVisible(true);
     };
     const onMouseOver = () => {
-        SplitMe.preload(); // 마우스를 올리는 시점에 클라이언트 브라우저에 파일을 불러옴
+        SplitMe.preload(); // 마우스를 올리는 시점에 클라이언트 브라우저에 SplitMe 파일을 불러옴
     };
     return (
         <div className="App">
