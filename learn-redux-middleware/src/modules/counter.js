@@ -1,5 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
-import {delay, put, takeEvery, takeLatest} from "redux-saga/effects"
+import { delay, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 //액션 타입
 const INCREASE = "counter/INCREASE";
@@ -14,16 +14,16 @@ export const decrease = createAction(DECREASE);
 export const increaseAsync = createAction(INCREASE_ASYNC, () => undefined);
 export const decreaseAsync = createAction(DECREASE_ASYNC, () => undefined);
 
-function* increaseSaga(){
-    yield delay(1000);      //1초 기다림
-    yield put(increase());  //특정 액션 디스패치
+function* increaseSaga() {
+    yield delay(1000); //1초 기다림
+    yield put(increase()); //특정 액션 디스패치
 }
-function* decreaseSaga(){
-    yield delay(1000);      //1초 기다림
-    yield put(decrease());  //특정 액션 디스패치
+function* decreaseSaga() {
+    yield delay(1000); //1초 기다림
+    yield put(decrease()); //특정 액션 디스패치
 }
 
-export function* counterSaga(){
+export function* counterSaga() {
     // takeEvery는 들어오는 모든 액션에 대해 특정 작업을 처리해 줌
     yield takeEvery(INCREASE_ASYNC, increaseSaga);
 
