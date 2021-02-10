@@ -9,6 +9,8 @@ import rootReducer from "./modules/index";
 import { createLogger } from "redux-logger";
 
 const logger = createLogger();
+
+// Store : 프로젝트에서 사용하는 모든 동적 데이터들을 담아두는 곳
 const store = createStore(rootReducer, applyMiddleware(logger));
 
 ReactDOM.render(

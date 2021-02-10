@@ -12,6 +12,7 @@ export const decrease = createAction(DECREASE);
 const initialState = 0;
 
 //리듀서 함수
+//action 객체를 받았을 때, 데이터를 어떻게 바꿀지 처리할지 정의하는 객체
 const counter = handleActions(
     {
         [INCREASE]: (state, action) => state + 1,
