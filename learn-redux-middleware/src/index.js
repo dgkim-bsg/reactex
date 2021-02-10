@@ -9,6 +9,7 @@ import rootReducer, { rootSaga } from "./modules/index";
 import { createLogger } from "redux-logger";
 import ReduxThunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
@@ -16,7 +17,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Store : 프로젝트에서 사용하는 모든 동적 데이터들을 담아두는 곳
 const store = createStore(
     rootReducer,
-    applyMiddleware(logger, ReduxThunk, sagaMiddleware)
+    composeWithDevTools(applyMiddleware(logger, ReduxThunk, sagaMiddleware))
 );
 sagaMiddleware.run(rootSaga);
 
