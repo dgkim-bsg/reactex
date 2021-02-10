@@ -17,7 +17,8 @@ const sagaMiddleware = createSagaMiddleware();
 // Store : 프로젝트에서 사용하는 모든 동적 데이터들을 담아두는 곳
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(logger, ReduxThunk, sagaMiddleware))
+    composeWithDevTools(applyMiddleware(logger, sagaMiddleware))
+    //composeWithDevTools(applyMiddleware(logger, ReduxThunk, sagaMiddleware))
 );
 sagaMiddleware.run(rootSaga);
 

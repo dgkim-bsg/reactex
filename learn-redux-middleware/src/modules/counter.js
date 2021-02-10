@@ -15,19 +15,23 @@ export const increaseAsync = createAction(INCREASE_ASYNC, () => undefined);
 export const decreaseAsync = createAction(DECREASE_ASYNC, () => undefined);
 
 function* increaseSaga() {
+    console.log("increaseSaga...");
     yield delay(1000); //1초 기다림
     yield put(increase()); //특정 액션 디스패치
 }
 function* decreaseSaga() {
+    console.log("decreaseSaga...");
     yield delay(1000); //1초 기다림
     yield put(decrease()); //특정 액션 디스패치
 }
 
 export function* counterSaga() {
     // takeEvery는 들어오는 모든 액션에 대해 특정 작업을 처리해 줌
+    console.log("counterSaga... increaseSaga");
     yield takeEvery(INCREASE_ASYNC, increaseSaga);
 
     // takeLatest는 기존에 진행중이던 작업이 있다면 취소처리하고 가장 마지막으로 실행된 작업만 수행
+    console.log("counterSaga... decreaseSaga");
     yield takeLatest(DECREASE_ASYNC, decreaseSaga);
 }
 
