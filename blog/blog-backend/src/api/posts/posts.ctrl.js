@@ -43,9 +43,26 @@ export const write = async (ctx) => {
 };
 
 export const list = async (ctx) => {
+    const page = parseInt(ctx.query.page || "1", 10); //두번째 파라미터는 진수를 표현함 (10=10진수)
     try {
-        const posts = await Post.find().exec();
-        ctx.body = posts;
+        // sort : 1 = 오름차순(이전글부터) / 2 = 내림차순(최신글부터)
+        // limit : 가져올 데이터 개수
+        // skip : 10 = 처음 10개를 제외하고 그 다음 데이터를 가져옴
+        const posts = await Post.find()
+            .sort({ _id: -1 })
+            .limit(10)
+            .skip((page - 1) * 10)
+            .lean()     //JSON으로 변환
+            .exec();
+        const postCount = await Post.countDocuments().exec();   //전체 카운트 가져오기
+        
+        ctx.set("Last-Page", Math.ceil(postCount / 10)); //전체 카운트 페이지 계산을 위한 커스텀 HTTP 헤더 설정 (전체 페이지 수 넣기)
+        
+        ctx.body = posts
+            .map((post) => ({
+                ...post,
+                body: post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,}    // 200자 이상이면 200자 이후부터 ...로 치환
+            ));
     } catch (e) {
         ctx.throw(500, e);
     }
