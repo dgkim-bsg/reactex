@@ -151,10 +151,7 @@ function AdminNavbar(props) {
                                     <div className="photo">
                                         <img
                                             alt="..."
-                                            src={
-                                                require("assets/img/anime3.png")
-                                                    .default
-                                            }
+                                            src={require("../../assets/img/anime3.png").default}
                                         />
                                     </div>
                                     <b className="caret d-none d-lg-block d-xl-block" />
