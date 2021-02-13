@@ -58,6 +58,7 @@ function Sidebar(props) {
     document.documentElement.classList.remove("nav-open");
   };
   const { routes, rtlActive, logo } = props;
+  console.log("rtlActive : " + rtlActive);
   let logoImg = null;
   let logoText = null;
   if (logo !== undefined) {

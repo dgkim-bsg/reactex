@@ -127,7 +127,7 @@ function RTL(props) {
             <div className="wrapper">
               <Sidebar
                 routes={routes}
-                rtlActive
+                rtlActive={true}
                 logo={{
                   outterLink: "https://www.creative-tim.com/",
                   text: "الإبداعية تيم",
