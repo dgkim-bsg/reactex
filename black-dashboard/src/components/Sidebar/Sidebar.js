@@ -16,7 +16,7 @@ import {
 
 var ps;
 
-function Sidebar(props) {
+const Sidebar = (props) => {
     const location = useLocation();
     const sidebarRef = useRef(null);
     // verifies if routeName is the one active (in browser input)
