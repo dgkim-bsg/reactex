@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 
@@ -16,6 +16,7 @@ import { BackgroundColorContext } from "../../contexts/BackgroundColorContext";
 var ps;
 
 function Admin(props) {
+    const { color, changeColor } = useContext(BackgroundColorContext); // BackgroundColorContext.Consumer
     const location = useLocation();
     const mainPanelRef = useRef(null);
     const [sidebarOpened, setsidebarOpened] = useState(
@@ -79,55 +80,44 @@ function Admin(props) {
     };
     const getBrandText = (path) => {
         for (let i = 0; i < routes.length; i++) {
-            if (
-                location.pathname.indexOf(routes[i].layout + routes[i].path) !==
-                -1
-            ) {
+            if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
                 return routes[i].name;
             }
         }
         return "Brand";
     };
     return (
-        <BackgroundColorContext.Consumer>
-            {({ color, changeColor }) => (
-                <>
-                    <div className="wrapper">
-                        <Sidebar
-                            routes={routes}
-                            logo={{
-                                outterLink: "https://www.creative-tim.com/",
-                                text: "Creative Tim",
-                                imgSrc: logo,
-                            }}
-                            toggleSidebar={toggleSidebar}
-                        />
-                        <div
-                            className="main-panel"
-                            ref={mainPanelRef}
-                            data={color}
-                        >
-                            <AdminNavbar
-                                brandText={getBrandText(location.pathname)}
-                                toggleSidebar={toggleSidebar}
-                                sidebarOpened={sidebarOpened}
-                            />
-                            <Switch>
-                                {getRoutes(routes)}
-                                <Redirect from="*" to="/admin/dashboard" />
-                            </Switch>
-                            {
-                                // we don't want the Footer to be rendered on map page
-                                location.pathname === "/admin/maps" ? null : (
-                                    <Footer fluid />
-                                )
-                            }
-                        </div>
-                    </div>
-                    <FixedPlugin bgColor={color} handleBgClick={changeColor} />
-                </>
-            )}
-        </BackgroundColorContext.Consumer>
+        <>
+            <div className="wrapper">
+                <Sidebar
+                    routes={routes}
+                    logo={{
+                        outterLink: "https://www.creative-tim.com/",
+                        text: "Creative Tim",
+                        imgSrc: logo,
+                    }}
+                    toggleSidebar={toggleSidebar}
+                />
+                <div className="main-panel" ref={mainPanelRef} data={color}>
+                    <AdminNavbar
+                        brandText={getBrandText(location.pathname)}
+                        toggleSidebar={toggleSidebar}
+                        sidebarOpened={sidebarOpened}
+                    />
+                    <Switch>
+                        {getRoutes(routes)}
+                        <Redirect from="*" to="/admin/dashboard" />
+                    </Switch>
+                    {
+                        // we don't want the Footer to be rendered on map page
+                        location.pathname === "/admin/maps" ? null : (
+                            <Footer fluid />
+                        )
+                    }
+                </div>
+            </div>
+            <FixedPlugin bgColor={color} handleBgClick={changeColor} />
+        </>
     );
 }
 

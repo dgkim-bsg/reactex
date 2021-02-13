@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 // reactstrap components
 import { Button, Dropdown, DropdownToggle, Badge } from "reactstrap";
@@ -6,6 +6,7 @@ import { ThemeContext, themes } from "../../contexts/ThemeContext";
 import { backgroundColors } from "../../contexts/BackgroundColorContext";
 
 const FixedPlugin = (props) => {
+    const { changeTheme } = useContext(ThemeContext); // ThemeContext.Consumer
     const [dropDownIsOpen, setdropDownIsOpen] = useState(false);
     const handleClick = () => {
         setdropDownIsOpen(!dropDownIsOpen);
@@ -58,28 +59,17 @@ const FixedPlugin = (props) => {
                         </div>
                     </li>
                     <li className="adjustments-line text-center color-change">
-                        <ThemeContext.Consumer>
-                            {({ changeTheme }) => (
-                                <>
-                                    <span className="color-label">
-                                        LIGHT MODE
-                                    </span>{" "}
-                                    <Badge
-                                        className="light-badge mr-2"
-                                        onClick={() =>
-                                            changeTheme(themes.light)
-                                        }
-                                    />{" "}
-                                    <Badge
-                                        className="dark-badge ml-2"
-                                        onClick={() => changeTheme(themes.dark)}
-                                    />{" "}
-                                    <span className="color-label">
-                                        DARK MODE
-                                    </span>{" "}
-                                </>
-                            )}
-                        </ThemeContext.Consumer>
+                        {/* ThemeContext.Consumer > { changeTheme } */}
+                        <>
+                            <span className="color-label">LIGHT MODE</span>
+                            {" "}
+                            <Badge className="light-badge mr-2" onClick={() => changeTheme(themes.light)} />
+                            {" "}
+                            <Badge className="dark-badge ml-2" onClick={() => changeTheme(themes.dark)} />
+                            {" "}
+                            <span className="color-label">DARK MODE</span>
+                            {" "}
+                        </>
                     </li>
                     <li className="button-container">
                         <Button

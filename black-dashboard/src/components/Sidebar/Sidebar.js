@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
@@ -17,6 +17,7 @@ import {
 var ps;
 
 const Sidebar = (props) => {
+    const { color } = useContext(BackgroundColorContext); // BackgroundColorContext.Consumer
     const location = useLocation();
     const sidebarRef = useRef(null);
     // verifies if routeName is the one active (in browser input)
@@ -91,46 +92,43 @@ const Sidebar = (props) => {
         }
     }
     return (
-        <BackgroundColorContext.Consumer>
-            {({ color }) => (
-                <div className="sidebar" data={color}>
-                    <div className="sidebar-wrapper" ref={sidebarRef}>
-                        {logoImg !== null || logoText !== null ? (
-                            <div className="logo">
-                                {logoImg}
-                                {logoText}
-                            </div>
-                        ) : null}
-                        <Nav>
-                            {routes.map((prop, key) => {
-                                if (prop.redirect) return null;
-                                return (
-                                    <li
-                                        className={
-                                            activeRoute(prop.path) +
-                                            (prop.pro ? " active-pro" : "")
-                                        }
-                                        key={key}
-                                    >
-                                        <NavLink
-                                            to={prop.layout + prop.path}
-                                            className="nav-link"
-                                            activeClassName="active"
-                                            onClick={props.toggleSidebar}
-                                        >
-                                            <i className={prop.icon} />
-                                            <p>{prop.name}</p>
-                                        </NavLink>
-                                    </li>
-                                );
-                            })}
-                        </Nav>
+        // BackgroundColorContext.Consumer > {color}
+        <div className="sidebar" data={color}>
+            <div className="sidebar-wrapper" ref={sidebarRef}>
+                {logoImg !== null || logoText !== null ? (
+                    <div className="logo">
+                        {logoImg}
+                        {logoText}
                     </div>
-                </div>
-            )}
-        </BackgroundColorContext.Consumer>
+                ) : null}
+                <Nav>
+                    {routes.map((prop, key) => {
+                        if (prop.redirect) return null;
+                        return (
+                            <li
+                                className={
+                                    activeRoute(prop.path) +
+                                    (prop.pro ? " active-pro" : "")
+                                }
+                                key={key}
+                            >
+                                <NavLink
+                                    to={prop.layout + prop.path}
+                                    className="nav-link"
+                                    activeClassName="active"
+                                    onClick={props.toggleSidebar}
+                                >
+                                    <i className={prop.icon} />
+                                    <p>{prop.name}</p>
+                                </NavLink>
+                            </li>
+                        );
+                    })}
+                </Nav>
+            </div>
+        </div>
     );
-}
+};
 
 Sidebar.defaultProps = {
     routes: [{}],

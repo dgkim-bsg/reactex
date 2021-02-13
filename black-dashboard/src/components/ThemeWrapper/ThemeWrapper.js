@@ -4,9 +4,9 @@ import { ThemeContext, themes } from "../../contexts/ThemeContext";
 const ThemeContextWrapper = (props) => {
     const [theme, setTheme] = useState(themes.dark);
 
-    function changeTheme(theme) {
+    const changeTheme = (theme) => {
         setTheme(theme);
-    }
+    };
 
     useEffect(() => {
         switch (theme) {
@@ -21,9 +21,7 @@ const ThemeContextWrapper = (props) => {
     }, [theme]);
 
     return (
-        <ThemeContext.Provider
-            value={{ theme: theme, changeTheme: changeTheme }}
-        >
+        <ThemeContext.Provider value={{ theme: theme, changeTheme: changeTheme }}>
             {props.children}
         </ThemeContext.Provider>
     );
