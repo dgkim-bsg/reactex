@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -18,11 +18,11 @@ var ps;
 
 function Admin(props) {
     const location = useLocation();
-    const mainPanelRef = React.useRef(null);
-    const [sidebarOpened, setsidebarOpened] = React.useState(
+    const mainPanelRef = useRef(null);
+    const [sidebarOpened, setsidebarOpened] = useState(
         document.documentElement.className.indexOf("nav-open") !== -1
     );
-    React.useEffect(() => {
+    useEffect(() => {
         if (navigator.platform.indexOf("Win") > -1) {
             document.documentElement.className += " perfect-scrollbar-on";
             document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -45,7 +45,7 @@ function Admin(props) {
             }
         };
     });
-    React.useEffect(() => {
+    useEffect(() => {
         if (navigator.platform.indexOf("Win") > -1) {
             let tables = document.querySelectorAll(".table-responsive");
             for (let i = 0; i < tables.length; i++) {

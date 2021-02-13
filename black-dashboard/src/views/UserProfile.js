@@ -15,7 +15,7 @@ import {
     Col,
 } from "reactstrap";
 
-function UserProfile() {
+const UserProfile = (props) => {
     return (
         <>
             <div className="content">
@@ -172,7 +172,10 @@ function UserProfile() {
                                         <img
                                             alt="..."
                                             className="avatar"
-                                            src={require("../assets/img/emilyz.jpg").default}
+                                            src={
+                                                require("../assets/img/emilyz.jpg")
+                                                    .default
+                                            }
                                         />
                                         <h5 className="title">Mike Andrew</h5>
                                     </a>
@@ -216,6 +219,6 @@ function UserProfile() {
             </div>
         </>
     );
-}
+};
 
 export default UserProfile;

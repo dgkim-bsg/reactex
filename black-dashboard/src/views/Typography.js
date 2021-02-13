@@ -3,7 +3,7 @@ import React from "react";
 // reactstrap components
 import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
 
-function Typography() {
+const Typography = (props) => {
     return (
         <>
             <div className="content">
@@ -217,6 +217,6 @@ function Typography() {
             </div>
         </>
     );
-}
+};
 
 export default Typography;

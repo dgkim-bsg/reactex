@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 // react plugin for creating notifications over the dashboard
 import NotificationAlert from "react-notification-alert";
 
@@ -15,8 +15,8 @@ import {
     Col,
 } from "reactstrap";
 
-function Notifications() {
-    const notificationAlertRef = React.useRef(null);
+const Notifications = (props) => {
+    const notificationAlertRef = useRef(null);
     const notify = (place) => {
         var color = Math.floor(Math.random() * 5 + 1);
         var type;
@@ -262,6 +262,6 @@ function Notifications() {
             </div>
         </>
     );
-}
+};
 
 export default Notifications;

@@ -11,7 +11,7 @@ import {
     Col,
 } from "reactstrap";
 
-function Tables() {
+const Tables = (props) => {
     return (
         <>
             <div className="content">
@@ -183,6 +183,6 @@ function Tables() {
             </div>
         </>
     );
-}
+};
 
 export default Tables;

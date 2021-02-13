@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react plugin used to create charts
@@ -33,8 +33,8 @@ import {
     chartExample4,
 } from "../variables/charts.js";
 
-function Dashboard(props) {
-    const [bigChartData, setbigChartData] = React.useState("data1");
+const Dashboard = (props) => {
+    const [bigChartData, setbigChartData] = useState("data1");
     const setBgChartData = (name) => {
         setbigChartData(name);
     };
@@ -602,6 +602,6 @@ function Dashboard(props) {
             </div>
         </>
     );
-}
+};
 
 export default Dashboard;

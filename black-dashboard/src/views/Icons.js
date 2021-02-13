@@ -3,7 +3,7 @@ import React from "react";
 // reactstrap components
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 
-function Icons() {
+const Icons = (props) => {
     return (
         <>
             <div className="content">

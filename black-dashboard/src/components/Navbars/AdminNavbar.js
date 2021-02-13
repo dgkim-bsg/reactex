@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 
@@ -22,11 +22,11 @@ import {
     ModalHeader,
 } from "reactstrap";
 
-function AdminNavbar(props) {
-    const [collapseOpen, setcollapseOpen] = React.useState(false);
-    const [modalSearch, setmodalSearch] = React.useState(false);
-    const [color, setcolor] = React.useState("navbar-transparent");
-    React.useEffect(() => {
+const AdminNavbar = (props) => {
+    const [collapseOpen, setcollapseOpen] = useState(false);
+    const [modalSearch, setmodalSearch] = useState(false);
+    const [color, setcolor] = useState("navbar-transparent");
+    useEffect(() => {
         window.addEventListener("resize", updateColor);
         // Specify how to clean up after this effect:
         return function cleanup() {
@@ -151,7 +151,10 @@ function AdminNavbar(props) {
                                     <div className="photo">
                                         <img
                                             alt="..."
-                                            src={require("../../assets/img/anime3.png").default}
+                                            src={
+                                                require("../../assets/img/anime3.png")
+                                                    .default
+                                            }
                                         />
                                     </div>
                                     <b className="caret d-none d-lg-block d-xl-block" />
@@ -203,6 +206,6 @@ function AdminNavbar(props) {
             </Modal>
         </>
     );
-}
+};
 
 export default AdminNavbar;

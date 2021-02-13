@@ -4,7 +4,7 @@ import {
     backgroundColors,
 } from "../../contexts/BackgroundColorContext";
 
-export default function BackgroundColorWrapper(props) {
+const BackgroundColorWrapper = (props) => {
     const [color, setColor] = useState(backgroundColors.blue);
 
     function changeColor(color) {
@@ -12,10 +12,10 @@ export default function BackgroundColorWrapper(props) {
     }
 
     return (
-        <BackgroundColorContext.Provider
-            value={{ color: color, changeColor: changeColor }}
-        >
+        <BackgroundColorContext.Provider value={{ color: color, changeColor: changeColor }} >
             {props.children}
         </BackgroundColorContext.Provider>
     );
-}
+};
+
+export default BackgroundColorWrapper;

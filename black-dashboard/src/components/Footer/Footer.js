@@ -4,7 +4,7 @@ import React from "react";
 // reactstrap components
 import { Container, Nav, NavItem, NavLink } from "reactstrap";
 
-function Footer() {
+const Footer = (props) => {
     return (
         <footer className="footer">
             <Container fluid>
@@ -39,6 +39,6 @@ function Footer() {
             </Container>
         </footer>
     );
-}
+};
 
 export default Footer;
