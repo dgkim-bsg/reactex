@@ -194,7 +194,7 @@ const AdminNavbar = (props) => {
                 toggle={toggleModalSearch}
             >
                 <ModalHeader>
-                    <Input placeholder="SEARCH" type="text" />
+                    <Input placeholder="Modal Test" type="text" />
                     <button
                         aria-label="Close"
                         className="close"
