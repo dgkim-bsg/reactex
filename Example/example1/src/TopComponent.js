@@ -1,10 +1,13 @@
 import React from 'react';
 import TopChildComponent from "./TopChildComponent";
 const TopComponent = (props) => {
+    const onClickAction = (count) => {
+        props.onClickAction(count);
+    };
     return (
         <div>
             <p>TopComponent</p>
-            <TopChildComponent count={props.count} onClickAction={props.onClickAction}/>
+            <TopChildComponent onClickAction={onClickAction}/>
         </div>
     );
 };

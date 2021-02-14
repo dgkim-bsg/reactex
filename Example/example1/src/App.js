@@ -4,16 +4,15 @@ import TopComponent from "./TopComponent";
 import UnderComponent from "./UnderComponent";
 
 function App() {
-    const [count, setCount] = useState(0);
     const [totalCnt, setTotalCnt]  = useState(0);
-    const onClickAction = () => {
-        setCount(count + 1);
-        setTotalCnt(totalCnt + (count + 1));
+    const onClickAction = (count) => {
+        console.log(count);
+        setTotalCnt(totalCnt + Number(count));
     };
     return (
         <div>
             <p>App.js</p>
-            <TopComponent count={count} onClickAction={onClickAction } />
+            <TopComponent onClickAction={onClickAction} />
             <UnderComponent count={totalCnt}/>
         </div>
     );
