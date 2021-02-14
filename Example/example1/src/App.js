@@ -6,7 +6,6 @@ import UnderComponent from "./UnderComponent";
 function App() {
     const [totalCnt, setTotalCnt]  = useState(0);
     const onClickAction = (count) => {
-        console.log(count);
         setTotalCnt(totalCnt + Number(count));
     };
     return (
