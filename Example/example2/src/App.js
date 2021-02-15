@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import TopComponent from "./TopComponent";
 import UnderComponent from "./UnderComponent";
+import {CountContextProvider} from "./context/CountContext";
 
 function App() {
-    const [totalCnt, setTotalCnt]  = useState(0);
-    const onClickAction = (count) => {
-        setTotalCnt(totalCnt + Number(count));
-    };
     return (
-        <div>
-            <p>App.js</p>
-            <TopComponent onClickAction={onClickAction} />
-            <UnderComponent count={totalCnt}/>
-        </div>
+        <CountContextProvider>
+            <div>
+                <p>App.js</p>
+                <TopComponent />
+                <UnderComponent />
+            </div>
+        </CountContextProvider>
     );
 }
 

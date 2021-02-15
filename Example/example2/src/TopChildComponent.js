@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, { useContext } from "react";
+import CountContext from "./context/CountContext";
 const TopChildComponent = (props) => {
-    const [count, setCount] = useState(0);
-    const onClickAction = () => {
-        props.onClickAction(count);
+    const { count, changeCount, changeSumCount } = useContext(CountContext); // CountContext.Consumer
+    const sumCountAction = () => {
+        changeSumCount(count);
     };
     return (
         <div>
             <p>TopChildComponent</p>
-            <input type="text" value={count} onChange={(e) => {setCount(e.target.value)}} />
-            <button onClick={onClickAction}>더하기</button>
+            <input
+                type="text"
+                value={count}
+                onChange={(e) => {
+                    changeCount(e.target.value);
+                }}
+            />
+            <button onClick={sumCountAction}>더하기</button>
         </div>
     );
 };

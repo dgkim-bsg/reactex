@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 import TopChildComponent from "./TopChildComponent";
 const TopComponent = (props) => {
-    
     return (
         <div>
             <p>TopComponent</p>
-            <TopChildComponent onClickAction={props.onClickAction}/>
+            <TopChildComponent />
         </div>
     );
 };
