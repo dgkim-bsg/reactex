@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import classNames from "classnames";
+import apiCall from "../../utils/ApiCall";
 
 import {
     Button,
@@ -22,7 +22,10 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = (props) => {
-    const [userInfo, setUserInfo] = useState( {user_email : "", user_img_url:""} );
+    const [userInfo, setUserInfo] = useState({
+        user_email: "",
+        user_img_url: "",
+    });
     const [collapseOpen, setcollapseOpen] = useState(false);
     const [modalSearch, setmodalSearch] = useState(false);
     const [color, setcolor] = useState("navbar-transparent");
@@ -33,8 +36,8 @@ const AdminNavbar = (props) => {
         };
     });
     useEffect(() => {
-        axios.get("http://localhost:27016/api/myvoice/userInfo").then((response) => {
-            setUserInfo({...userInfo, ...response.data});
+        apiCall.get("/api/myvoice/userInfo").then((response) => {
+            setUserInfo({ ...userInfo, ...response.data });
         });
     }, []);
     // function that adds color white/transparent to the navbar on resize (this is for the collapse)
@@ -155,7 +158,12 @@ const AdminNavbar = (props) => {
                                     <div className="photo">
                                         <img
                                             alt="UserImg"
-                                            src={userInfo.user_img_url !== "" ? userInfo.user_img_url : require("../../assets/img/anime3.png").default }
+                                            src={
+                                                userInfo.user_img_url !== ""
+                                                    ? userInfo.user_img_url
+                                                    : require("../../assets/img/anime3.png")
+                                                          .default
+                                            }
                                         />
                                     </div>
                                     <b className="caret d-none d-lg-block d-xl-block" />
