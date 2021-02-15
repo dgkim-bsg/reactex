@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-// nodejs library that concatenates classes
+import axios from "axios";
 import classNames from "classnames";
 
-// reactstrap components
 import {
     Button,
     Collapse,
@@ -23,16 +22,21 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = (props) => {
+    const [userInfo, setUserInfo] = useState( {user_email : "", user_img_url:""} );
     const [collapseOpen, setcollapseOpen] = useState(false);
     const [modalSearch, setmodalSearch] = useState(false);
     const [color, setcolor] = useState("navbar-transparent");
     useEffect(() => {
         window.addEventListener("resize", updateColor);
-        // Specify how to clean up after this effect:
         return function cleanup() {
             window.removeEventListener("resize", updateColor);
         };
     });
+    useEffect(() => {
+        axios.get("http://localhost:27016/api/myvoice/userInfo").then((response) => {
+            setUserInfo({...userInfo, ...response.data});
+        });
+    }, []);
     // function that adds color white/transparent to the navbar on resize (this is for the collapse)
     const updateColor = () => {
         if (window.innerWidth < 993 && collapseOpen) {
@@ -100,7 +104,7 @@ const AdminNavbar = (props) => {
                             </InputGroup>
                             <UncontrolledDropdown nav>
                                 <DropdownToggle
-                                    caret
+                                    caret={true}
                                     color="default"
                                     data-toggle="dropdown"
                                     nav
@@ -111,7 +115,7 @@ const AdminNavbar = (props) => {
                                 </DropdownToggle>
                                 <DropdownMenu
                                     className="dropdown-navbar"
-                                    right
+                                    right={true}
                                     tag="ul"
                                 >
                                     <NavLink tag="li">
@@ -143,18 +147,15 @@ const AdminNavbar = (props) => {
                             </UncontrolledDropdown>
                             <UncontrolledDropdown nav>
                                 <DropdownToggle
-                                    caret
+                                    caret={true}
                                     color="default"
-                                    nav
+                                    nav={true}
                                     onClick={(e) => e.preventDefault()}
                                 >
                                     <div className="photo">
                                         <img
-                                            alt="..."
-                                            src={
-                                                require("../../assets/img/anime3.png")
-                                                    .default
-                                            }
+                                            alt="UserImg"
+                                            src={userInfo.user_img_url !== "" ? userInfo.user_img_url : require("../../assets/img/anime3.png").default }
                                         />
                                     </div>
                                     <b className="caret d-none d-lg-block d-xl-block" />
@@ -162,7 +163,7 @@ const AdminNavbar = (props) => {
                                 </DropdownToggle>
                                 <DropdownMenu
                                     className="dropdown-navbar"
-                                    right
+                                    right={true}
                                     tag="ul"
                                 >
                                     <NavLink tag="li">
