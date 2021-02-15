@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const CountContext = createContext({ count: 0 });
+const CountContext = createContext({ count: 0, setSumCount:0 });
 
 export const CountContextProvider = (props) => {
     const [count, setCount] = useState(0);
