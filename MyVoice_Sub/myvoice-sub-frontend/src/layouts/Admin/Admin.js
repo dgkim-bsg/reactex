@@ -13,6 +13,9 @@ import routes from "../../routes.js";
 import logo from "../../assets/img/react-logo.png";
 import { BackgroundColorContext } from "../../contexts/BackgroundColorContext";
 
+import dotenv from "dotenv";    //환경변수 가져오기
+dotenv.config();
+
 var ps;
 
 function Admin(props) {
@@ -93,7 +96,7 @@ function Admin(props) {
                     routes={routes}
                     logo={{
                         outterLink: "https://www.creative-tim.com/",
-                        text: "Creative Tim",
+                        text: `SubVoice (${process.env.REACT_APP_SERVER})`,
                         imgSrc: logo,
                     }}
                     toggleSidebar={toggleSidebar}
