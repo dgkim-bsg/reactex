@@ -32,4 +32,5 @@ app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log("MyVoice_Sub Backend Server Start [PORT : " + process.env.SERVER_PORT + "]");
+    console.log("Server : " + process.env.SERVER);
 });
