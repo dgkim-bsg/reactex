@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const CountContext = createContext({ count: 0 });
 
-const CountContextProvider = (props) => {
+export const CountContextProvider = (props) => {
     const [count, setCount] = useState(0);
     const [sumCount, setSumCount] = useState(0);
     const changeCount = (cnt) => {
@@ -19,9 +19,5 @@ const CountContextProvider = (props) => {
         </CountContext.Provider>
     );
 };
-
-const {Consumer : CountConsumer} = CountContext;
-
-export {CountContextProvider, CountConsumer};
 
 export default CountContext;
