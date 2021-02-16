@@ -18,7 +18,7 @@ dotenv.config();
 
 var ps;
 
-function Admin(props) {
+const Admin = (props) => {
     const { color, changeColor } = useContext(BackgroundColorContext); // BackgroundColorContext.Consumer
     const location = useLocation();
     const mainPanelRef = useRef(null);

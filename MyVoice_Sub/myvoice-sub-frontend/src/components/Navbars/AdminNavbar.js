@@ -20,6 +20,7 @@ import {
     NavbarToggler,
     ModalHeader,
 } from "reactstrap";
+import axios from "axios";
 
 const AdminNavbar = (props) => {
     const [userInfo, setUserInfo] = useState({
@@ -36,10 +37,20 @@ const AdminNavbar = (props) => {
         };
     });
     useEffect(() => {
-        apiCall.get("/api/myvoice/userInfo").then((response) => {
+        apiCall.get("/api/auth/userInfo").then((response) => {
             setUserInfo({ ...userInfo, ...response.data });
         });
     }, []);
+    const callDb = () => {
+        apiCall.get("/api/db").then((response) => {
+            alert(response.data);
+        });
+    }
+    const callMyVoice = () => {
+        apiCall.get("/api/myvoice").then((response) => {
+            alert(response.data);
+        });
+    }
     // function that adds color white/transparent to the navbar on resize (this is for the collapse)
     const updateColor = () => {
         if (window.innerWidth < 993 && collapseOpen) {
@@ -175,12 +186,12 @@ const AdminNavbar = (props) => {
                                     tag="ul"
                                 >
                                     <NavLink tag="li">
-                                        <DropdownItem className="nav-item">
+                                        <DropdownItem className="nav-item" onClick={callDb}>
                                             Profile
                                         </DropdownItem>
                                     </NavLink>
                                     <NavLink tag="li">
-                                        <DropdownItem className="nav-item">
+                                        <DropdownItem className="nav-item" onClick={callMyVoice}>
                                             Settings
                                         </DropdownItem>
                                     </NavLink>

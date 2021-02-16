@@ -3,6 +3,6 @@ import * as myvoiceCtrl from './myvoice.ctrl';
 
 const myvoice = new Router();
 
-myvoice.get('/userInfo', myvoiceCtrl.userInfo);
+myvoice.get('/', myvoiceCtrl.list);
 
 export default myvoice;
