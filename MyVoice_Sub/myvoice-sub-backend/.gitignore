@@ -15,7 +15,11 @@
 .env
 .env.local
 .env.dev
+.env.dev1
+.env.dev2
 .env.prod
+.env.prod1
+.env.prod2
 
 npm-debug.log*
 yarn-debug.log*

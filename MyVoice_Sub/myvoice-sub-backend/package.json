@@ -22,8 +22,10 @@
         "nodemon": "^2.0.7"
     },
     "scripts": {
-        "start": "copy .env.prod .env && node -r esm src",
-        "start:dev": "copy .env.dev .env && node -r esm src",
+        "start:prod1": "copy .env.prod1 .env && node -r esm src",
+        "start:prod2": "copy .env.prod2 .env && node -r esm src",
+        "start:dev1": "copy .env.dev1 .env && node -r esm src",
+        "start:dev2": "copy .env.dev2 .env && node -r esm src",
         "start:local": "copy .env.local .env && nodemon --watch src/ -r esm src/index.js"
     }
 }

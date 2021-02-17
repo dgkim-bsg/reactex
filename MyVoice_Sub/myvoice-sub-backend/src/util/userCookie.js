@@ -17,7 +17,7 @@ export const setCookie = (ctx, email) => {
     console.log("setCookie");
     console.log(token);
     console.log("========================");
-    ctx.cookies.set("access_token", token, {
+    ctx.cookies.set("myvoice-sub-backend", token, {
         maxAge: 1000 * 60 * 1,  //1분
         httpOnly:true
     });

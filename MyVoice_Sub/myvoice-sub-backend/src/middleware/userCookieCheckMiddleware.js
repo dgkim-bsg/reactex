@@ -3,7 +3,7 @@ import dotenv from "dotenv"; //환경변수 가져오기
 dotenv.config();
 
 const userCookieCheckMiddleware = (ctx, next) => {
-    const token = ctx.cookies.get("access_token");
+    const token = ctx.cookies.get("myvoice-sub-backend");
     console.log("========================");
     console.log("userCookieCheckMiddleware > token");
     console.log(token);
